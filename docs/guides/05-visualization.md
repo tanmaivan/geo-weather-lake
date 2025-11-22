@@ -9,7 +9,7 @@ Before creating any charts, Metabase needs to know how to read our Data Warehous
 ### Step 1.1: Access Admin Settings
 
 1.  Log in to Metabase (`http://localhost:3000`).
-2.  Click the Gear Icon (⚙️) in the top right $\to$ Admin settings.
+2.  Click in the top right $\to$ Admin settings.
 3.  Go to the Databases tab.
 4.  Click Add database.
 
@@ -28,7 +28,6 @@ Enter the following connection details.
 Click Save. Metabase will sync with the database file.
 
 ---
-
 ## 2. Data Modeling (Metadata)
 
 To enable smart filtering and drilling, we need to define relationships between our Fact and Dimension tables.
@@ -36,21 +35,26 @@ To enable smart filtering and drilling, we need to define relationships between 
 1.  In Admin settings, go to the Table Metadata tab.
 2.  Select Weather Data Warehouse.
 
-### Define Relationships (Foreign Keys)
+### Step 2.1: Define Entity Keys (Primary Keys)
+First, we must tell Metabase which columns are the unique identifiers (Primary Keys) in our Dimension tables.
 
-Go to the `marts.fact_hourly_weather` table and configure the columns:
+*   Table `dim_location`: Find column `location_key`, set "Field Type" to Entity Key.
+*   Table `dim_date`: Find column `date_key`, set "Field Type" to Entity Key.
+*   Table `dim_weather`: Find column `weather_key`, set "Field Type" to Entity Key.
 
-- `location_key`: Set "Field Type" to Foreign Key $\to$ Target: `dim_location.location_key`.
-- `date_key`: Set "Field Type" to Foreign Key $\to$ Target: `dim_date.date_key`.
-- `weather_key`: Set "Field Type" to Foreign Key $\to$ Target: `dim_weather.weather_key`.
+### Step 2.2: Define Relationships (Foreign Keys)
+Now that Entity Keys are set, go to the `marts.fact_hourly_weather` table and link the columns:
 
-### Define Entity Types
+*   `location_key`: Set "Field Type" to Foreign Key $\to$ Target: `dim_location.location_key`.
+*   `date_key`: Set "Field Type" to Foreign Key $\to$ Target: `dim_date.date_key`.
+*   `weather_key`: Set "Field Type" to Foreign Key $\to$ Target: `dim_weather.weather_key`.
 
-Go to the Dimension tables and configure the business keys:
+### Step 2.3: Define Entity Types (Semantic Types)
+Configure semantic types to enable specific visualization features (like Maps):
 
-- `dim_location.place`: Set "Field Type" to City (enables map features).
-- `dim_location.latitude`: Set "Field Type" to Latitude.
-- `dim_location.longitude`: Set "Field Type" to Longitude.
+*   `dim_location.place`: Set "Field Type" to City.
+*   `dim_location.latitude`: Set "Field Type" to Latitude.
+*   `dim_location.longitude`: Set "Field Type" to Longitude.
 
 ---
 
