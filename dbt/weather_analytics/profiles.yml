@@ -1,0 +1,10 @@
+weather_analytics:
+  outputs:
+    dev:
+      type: duckdb
+      path: dbt_tmp.duckdb
+      extensions:
+        - httpfs
+        - delta
+
+  target: dev

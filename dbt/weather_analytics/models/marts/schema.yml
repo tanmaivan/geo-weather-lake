@@ -1,0 +1,109 @@
+models:
+  - name: dim_location
+    description: "Dimension table for unique geographical locations. The grain is one row per unique 'place' name defined during ingestion."
+    columns:
+      - name: location_key
+        description: "The primary key for the location dimension, generated from the 'place' column."
+        tests:
+          - unique
+          - not_null
+
+      - name: place
+        description: "The standardized place name, defined during ingestion (e.g., 'Hanoi', 'Phường Nghĩa Chánh'). This is the business key."
+        tests:
+          - unique # A place name should be unique in this dimension table
+          - not_null
+
+      - name: api_city
+        description: "The city name as returned by the Weatherbit API. Kept for reference."
+
+      - name: country
+        description: "The two-letter country code."
+
+      - name: latitude
+        description: "The most recent latitude associated with the place."
+
+      - name: longitude
+        description: "The most recent longitude associated with the place."
+
+  - name: dim_date
+    description: "Dimension table with date-related attributes for trend analysis."
+    columns:
+      - name: date_key
+        description: "The primary key for the date dimension, in YYYYMMDD format."
+        tests:
+          - unique
+          - not_null
+
+      - name: full_date
+        description: "The full date value."
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_weather
+    description: "Dimension table for unique weather conditions and their descriptions."
+    columns:
+      - name: weather_key
+        description: "The primary key for the weather dimension."
+        tests:
+          - unique
+          - not_null
+
+      - name: weather_code
+        description: "The numeric weather code from the API."
+        tests:
+          - not_null
+
+      - name: weather_description
+        description: "The text description of the weather condition."
+        tests:
+          - not_null
+
+  - name: fact_hourly_weather
+    description: "The central fact table, containing aggregated hourly weather metrics. The grain is one row per (location x date x weather_condition x hour)."
+    columns:
+      - name: location_key
+        description: "Foreign key to the dim_location table."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_location')
+              field: location_key
+
+      - name: date_key
+        description: "Foreign key to the dim_date table."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: weather_key
+        description: "Foreign key to the dim_weather table."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_weather')
+              field: weather_key
+
+      - name: observation_hour
+        description: "The UTC hour of the observation (0-23)."
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 23
+
+      - name: avg_temperature_celsius
+        description: "The average temperature in Celsius for this group."
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: -80
+              max_value: 80
+
+      - name: observation_count
+        description: "The number of raw observations aggregated into this row."
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 1

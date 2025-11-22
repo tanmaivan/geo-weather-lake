@@ -1,0 +1,6 @@
+sources:
+  - name: silver
+    tables:
+      - name: weather_observations
+        meta:
+          external_location: "delta_scan('s3://weather-silver/weather_observations')"

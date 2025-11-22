@@ -1,0 +1,29 @@
+name: "weather_analytics"
+version: "1.0.0"
+
+profile: "weather_analytics"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets: # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+on-run-start:
+  - "{{ s3_setup() }}"
+
+models:
+  weather_analytics:
+    staging:
+      +materialized: view
+      +file_format: delta
+      +schema: staging
+
+    marts:
+      +materialized: table
+      +schema: marts
