@@ -102,8 +102,6 @@ LIMIT
   200;
 ```
 
-Here is the updated configuration section for the **Detailed Data Table** SQL variables. You can replace the note under the SQL code in **Guide 05** with this detailed configuration block.
-
 #### Configuration for SQL Variables (Variables Panel)
 
 In the SQL Editor, open the **Variables** panel (right sidebar) to configure the parameters used in the `WHERE` clause.

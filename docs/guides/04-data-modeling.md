@@ -261,6 +261,6 @@ Note: Because of Docker Volumes, the file inside the container is instantly sync
 
 ---
 
-Next Step: [05-visualization.md] (Building the Dashboard in Metabase)
+Next Step: Building the Dashboard in Metabase
 
 < [Back to Transformation](03-transformation.md) | [Next: Visualization >](05-visualization.md)
