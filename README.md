@@ -6,7 +6,7 @@
 [![DuckDB](https://img.shields.io/badge/DuckDB-1.4.2-FFF000?logo=duckdb&logoColor=black)](https://duckdb.org/)
 [![dbt](https://img.shields.io/badge/dbt-1.10.0-FF694B?logo=dbt&logoColor=white)](https://www.getdbt.com/)
 [![PyArrow](https://img.shields.io/badge/PyArrow-18.1.0-D22128?logo=apache&logoColor=white)](https://arrow.apache.org/)
-[![Airflow](https://img.shields.io/badge/Apache%20Airflow-2.8.1-017CEE?logo=apache-airflow&logoColor=white)](https://airflow.apache.org/)
+[![Airflow](https://img.shields.io/badge/Apache%20Airflow-3.1.2-017CEE?logo=apache-airflow&logoColor=white)](https://airflow.apache.org/)
 [![Metabase](https://img.shields.io/badge/Metabase-BI-509EE3?logo=metabase&logoColor=white)](https://www.metabase.com/)
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 
