@@ -19,7 +19,7 @@ Planning transforms an abstract idea into an executable roadmap. For this projec
 
 To avoid "over-engineering," I acted as the primary stakeholder to define realistic constraints, for example:
 
-- Data Volume: Hourly weather data for ~63 locations over 1 year creates a dataset < 500MB.
+- Data Volume: Hourly weather data for ~34 locations over 1 year creates a dataset < 500MB.
 - Decision: Distributed computing frameworks (e.g., Spark) are unnecessary and cost-inefficient.
 - Solution: A Single-Node Architecture using Pandas (for transformation) and DuckDB (for OLAP queries) provides the best balance of performance and simplicity.
 
