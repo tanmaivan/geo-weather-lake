@@ -25,6 +25,7 @@ Geo Weather Lake is a comprehensive end-to-end Data Engineering project that ext
 7. [Project Structure](#7-project-structure)
 8. [Setup & Installation](#8-setup--installation)
 9. [How to Reproduce](#9-how-to-reproduce)
+10. [Future Roadmap](#10-future-roadmap)
 
 ---
 
@@ -259,3 +260,28 @@ dbt debug
 ---
 
 ## 9. How to Reproduce
+
+To replicate this project from scratch, I have prepared detailed step-by-step guides covering every phase of the engineering lifecycle. Follow them in order:
+
+- **[1: Planning & Setup](./docs/guides/01-planning.md)**
+
+- **[2: Data Ingestion (Bronze)](./docs/guides/02-ingestion.md)**
+
+- **[3: Data Transformation (Silver)](./docs/guides/03-transformation.md)**
+
+- **[4: Data Modeling (Gold)](./docs/guides/04-data-modeling.md)**
+
+- **[5: Visualization & Dashboard](./docs/guides/05-visualization.md)**
+
+---
+
+## 10. Future Roadmap
+
+While the current pipeline is robust, there is always room for improvement. Here is what's next:
+
+- Incremental Loading: Switch Silver and Gold layers from `overwrite` to `incremental` merge logic for better performance at scale.
+- CI/CD: Integrate GitHub Actions to automatically run `dbt test` and linters on Pull Requests.
+- Alerting: Configure Airflow Slack/Email callbacks for DAG failures.
+- New Data Sources: Integrate Forecast API to compare predictions vs. actuals.
+
+---
