@@ -154,22 +154,22 @@ An interactive Metabase dashboard provides real-time insights.
 
 ---
 
-### 8. Setup & Installation
+## 8. Setup & Installation
 
-#### Prerequisites
+### Prerequisites
 
 - Docker installed (Docker Desktop is recommended).
 - Python 3.11 (for local scripts/notebooks).
 - **Weatherbit API Key**: Sign up for a free trial (Business Plan trial allows 1500 requests/day).
 
-#### Step 1: Clone the Repository
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/tanmaivan/geo-weather-lake.git
 cd geo-weather-lake
 ```
 
-#### Step 2: Configure Environment Variables
+### Step 2: Configure Environment Variables
 
 Create a `.env` file in the root directory with the following credentials:
 
@@ -191,7 +191,7 @@ AIRFLOW_UID=50000
 WEATHERBIT_API_KEY=your_api_key_here
 ```
 
-#### Step 3: Build Docker Images Manually
+### Step 3: Build Docker Images Manually
 
 Since the `docker-compose.yml` relies on pre-built local images, you need to build them first:
 
@@ -203,7 +203,7 @@ docker build --no-cache -t local-airflow:latest ./airflow
 docker build --no-cache -t local-metabase:latest ./metabase
 ```
 
-#### Step 4: Start Infrastructure
+### Step 4: Start Infrastructure
 
 Once images are built, start the services:
 
@@ -213,7 +213,7 @@ docker-compose up -d
 
 _Wait a few minutes for Airflow and Metabase to fully initialize._
 
-#### Step 5: Setup Local Environment (Optional)
+### Step 5: Setup Local Environment (Optional)
 
 If you want to run notebooks or initialization scripts from your local machine (outside Docker), set up a Python environment:
 
@@ -226,7 +226,7 @@ conda activate ./venv
 pip install -r requirements.txt
 ```
 
-#### Step 6: Initialize Data Lake Buckets
+### Step 6: Initialize Data Lake Buckets
 
 Create the `weather-bronze`, `weather-silver` buckets in MinIO:
 
@@ -237,7 +237,7 @@ python scripts/create_buckets.py
 # docker exec -it airflow-scheduler python /opt/airflow/scripts/create_buckets.py
 ```
 
-#### Step 7: Configure dbt
+### Step 7: Configure dbt
 
 Ensure dbt can connect to the database:
 
@@ -283,5 +283,3 @@ While the current pipeline is robust, there is always room for improvement. Here
 - CI/CD: Integrate GitHub Actions to automatically run `dbt test` and linters on Pull Requests.
 - Alerting: Configure Airflow Slack/Email callbacks for DAG failures.
 - New Data Sources: Integrate Forecast API to compare predictions vs. actuals.
-
----
