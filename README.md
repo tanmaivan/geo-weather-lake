@@ -208,7 +208,7 @@ docker build --no-cache -t local-metabase:latest ./metabase
 Once images are built, start the services:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 _Wait a few minutes for Airflow and Metabase to fully initialize._
